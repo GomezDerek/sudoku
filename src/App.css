@@ -1,0 +1,565 @@
+:root
+{
+  --white: #DDD;
+  
+  --house-gap: 1vw;
+  --square-font-size: calc( 1rem + 10 * ((100vw - 1024px) / 1024) );
+  --input-button-size: 2.8vw;
+  
+  --mobile-house-gap: 1.5vw;
+  --mobile-house-size: min( 25vw, calc(55vh / 3 - var(--mobile-house-gap)) );
+  --mobile-square-border-size: max(2px, calc(1vw / 2));
+  --mobile-square-font-size: calc( var(--mobile-house-size) / 3 - 1rem);
+  --mobile-input-pad-height: 30vh;
+  --mobile-input-button-height: calc(var(--mobile-input-pad-height) / 4);
+}
+
+body 
+{ 
+  background-color: #1b1b1b;
+  color: var(--white);
+}
+
+/****************************************************************/
+/* Style and format the main sections in relation to each other */
+/****************************************************************/
+#Sudoku, #Game-Board, #Input-Pad
+{
+  border: none;
+}
+
+/* add borders for mobile dev purposes */
+/* @media screen and (max-width: 1023px)
+{
+  #Sudoku, #Game-Board, #Input-Pad, #Title
+  {
+    border: 1px solid white;
+  }
+} */
+
+#Sudoku 
+{
+  /* side gutters */
+  margin-left: 5%; 
+  margin-right: 5%;
+  padding: 0;
+
+  display: grid;
+}
+
+#Title
+{
+  grid-area: title;
+  text-align: center;
+  margin-top: -1px;
+}
+
+#Game-Board
+{
+  grid-area: board;
+  margin: -1px;
+
+  /* background-color: teal; */
+}
+
+#Input-Pad
+{
+  grid-area: input;
+  margin: -1px;
+
+  /* background-color: red; */
+}
+
+/* desktop format */
+@media screen and (min-width: 1024px)
+{
+  #Sudoku
+  {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: 
+      '..... title title title .....'
+      'board board board input input'
+      'board board board input input'
+      'board board board input input'
+    ;
+    
+    margin-top: 0;
+  }
+}
+
+/* mobile & tablet format */
+@media screen and (max-width: 1023px) 
+{
+  #Sudoku
+  {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+    '..... title title title .....'
+    'board board board board board'
+    'board board board board board'
+    '..... input input input .....'
+    '..... input input input .....'
+    ;
+  }
+
+  #Title
+  {
+    height: 10vh;
+    color: var(--white);
+  }
+  #Game-Board
+  {
+    height: 55vh;
+  }
+  #Input-Pad
+  {
+    height: var(--mobile-input-pad-height);
+  }
+}
+
+/****************************************/
+/* Style and format the Sudoku board    */
+/* starting with the 3x3 grid of houses */
+/****************************************/
+#Game-Board 
+{
+  display: grid;
+}
+
+/* desktop format */
+@media screen and (min-width: 1024px)
+{
+  #Title
+  {
+    /* Default H1 font-size is 2rem && 40px */
+    font-size: calc(1rem + 2vw);
+
+    padding-top: 0.5rem;
+    padding-top: 3vh;
+    /* Height: font-size + 1.5rem + 0.5vh */
+    height: calc(1rem + 2vw + 1.5rem + 0.5vh);
+    /* line thickness scale with screensize, bc it seemed to get thinner as the screen got larger */
+    border-bottom: calc( 2px + 2 * ((100vw - 1024px) / 1024) ) #999 solid;
+  }
+
+  #Game-Board
+  {
+    padding-left: 25%;
+    padding-right: 10%;
+    justify-content: right;
+  }
+}
+
+/* mobile & tablet format */
+@media screen and (max-width: 1023px)
+{
+  #Title
+  {
+    margin-bottom: 0;
+    padding: 0;
+    line-height: 10vh;
+
+    font-size: min( calc(1.5rem + 3.5vw), 6vh );
+
+    border-bottom:2px solid #999;
+  }
+
+  #Game-Board
+  {
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+.House-Row 
+{
+  display: flex;
+
+  margin: var(--house-gap) 0 0 0;
+  padding: 0;
+  
+  /* For dev */
+  /* border: 1px solid yellow;
+  padding: 10px;
+  margin-top: -1px; */
+}
+
+/* balance bottom row margin with top House Row */
+.House-Row:last-child 
+{
+  /* margin-bottom: 10px; */
+  margin-bottom: var(--house-gap);
+}
+
+/*******************************/
+/* Style and format the houses */
+/*******************************/
+.House 
+{
+  /* border: 1px solid #FFF; */
+  /* border: 1px solid red; */
+  margin: 0 0 0 var(--house-gap);
+  /* width: 150px;
+  height: 150px; */
+  /* width: 7rem;
+  height: 7rem; */
+  width: 10.5vw;
+  height: 10.5vw;
+}
+
+/* balance right most houses's right side margin with de los demas */
+.House:last-child 
+{
+  /* margin-right: 10px; */
+  margin-right: var(--house-gap);
+}
+
+.Square-Row 
+{
+  display: flex;
+  height: 33%;
+}
+
+@media screen and (max-width: 1023px)
+{
+  #Game-Board
+  {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .House-Row
+  {
+    margin: var(--mobile-house-gap) 0 0 0;
+    padding: 0;
+    /* border: 1px solid red; */
+
+    display: flex;
+    justify-content: center;
+  }
+
+  .House-Row:last-child
+  {
+    margin-bottom: 0;
+  }
+
+  .House
+  {
+    margin: 0 0 0 var(--mobile-house-gap);
+
+    /* House size will ideally be 25vw but never exceed 
+    1/3 of #Game-Board height so that it stays within bounds */
+    width: var(--mobile-house-size);
+    height: var(--mobile-house-size);
+  }
+
+  .House:last-child
+  {
+    margin-right: var(--mobile-house-gap);
+  }
+
+  .Square-Row
+  {
+    height: 33%.33;
+    padding: 0;
+    margin-bottom: calc(1px - ( (1023 - 100vh) / (1023 - 410) / 2));
+  }
+}
+
+/* adding this rule because something weird happens */
+@media screen and (min-width: 410px) and (max-width: 1023px)
+{
+  .Square-Row
+  {
+    margin-bottom: calc(1px - ( (1023 - 100vw) / (1023 - 410) / 2));
+  }
+}
+
+/****************************************************************/
+/* the following styles are for the Sudoku squares in the board */
+/****************************************************************/
+
+/* these styles may be overriden by Css.tsx & Square.tsx */
+.Square 
+{
+  /* border: solid 1px #555; */
+  border: ridge calc( 2.7px + 2 * ((100vw - 1024px) / 1024) ) #999999FF;
+  margin: 0px;
+  width: 30%;
+  height: 88%;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1023px)
+{
+  .Square
+  {
+    border-width: var(--mobile-square-border-size); 
+    height: calc(100% - 2 * var(--mobile-square-border-size)); /* this calc is the pinnacle of my web dev career */
+  }
+}
+
+/*************************************************************************************/
+/* usually targets the disabled squares that are loaded in to the puzzle or solution */
+/* when squares are disabled, they are <ul>                                          */
+/* when squares are editable, they are <input>                                       */
+/*************************************************************************************/
+
+/* it turns out that <ul> is extremely resistant to spacial formatting >:( */
+/* and doesn't respond to flex box, text-align, or vertical alignment      */
+.Square > ul
+{
+  list-style-type: none;
+
+  margin: auto; /* this also centers vertical alignment for some reason */
+  padding: 0; /* removing all padding horizontally centers */
+
+  border: none;
+
+  font-size: var(--square-font-size);
+} 
+
+.Square > input 
+{
+  align-self: center; /* vertical center per flex-box */
+  margin: auto; /* horizontal center alignment */
+  padding: 0;
+  text-align: center;
+
+  width: 100%; 
+  height: 100%;
+
+  border: none;
+  background-color: #FFFFFF21;
+  color: var(--white);
+
+  font-size: var(--square-font-size);
+}
+
+@media screen and (max-width: 767px)
+{
+  .Square > input, .Square > ul 
+  {
+    font-size: var(--mobile-square-font-size);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px)
+{
+  .Square > input, .Square > ul 
+  {
+    font-size: calc( var(--mobile-square-font-size) - 0.5rem );
+  }
+}
+
+.Square > input:focus
+{
+  border: none;
+  background-color: #FFFFFF66;
+  color: var(--white);
+}
+
+.Square > input:focus-visible
+{
+  outline: none;
+}
+
+/****************************************************/
+/* for the annotation feature                       */
+/* <Square> currently only uses <ul> or <input>     */
+/* however, for annotation mode, <p> should be used */
+/****************************************************/
+.Square > p 
+{
+  font-size: 0.5rem;
+  margin: 0;
+  width: 33%;
+}
+
+/**************************************************/
+/* following style is for the numerical input pad */
+/**************************************************/
+
+#Input-Pad > button
+{
+  border: 1.5px solid black;
+  background-color: var(--white);
+}
+
+/* desktop format for input pad */
+@media screen and (min-width: 1024px)
+{
+  #Input-Pad 
+  {
+    display: grid;
+    /* grid-template-columns:  repeat(3, 2.5rem) 1fr;
+    grid-template-rows: 1fr repeat(3, 2.5rem) 2rem 1fr; */
+    grid-template-columns:  repeat( 3, var(--input-button-size) ) 1fr;
+    grid-template-rows: 1fr repeat( 4, var(--input-button-size) ) 1fr;
+    grid-template-areas:
+      '.....  .....  .....  .'
+      'one    two    three  .'
+      'four   five   six    .'
+      'seven  eight  nine   .'
+      'clear  clear  clear  .'
+      '.....  .....  .....  .'
+    ;
+  }
+
+  #Input-Pad > button
+  {
+    /* font-size: 1rem; */
+    font-size: 1.7vw;
+  }
+}
+
+/* mobile & tablet format for input pad */
+@media screen and (max-width: 1023px)
+{
+  #Input-Pad
+  {
+    display: grid;
+    grid-template-columns: 1fr repeat(3, 18vw) 1fr;
+    grid-template-rows: 1fr repeat( 4, min(12vw, var(--mobile-input-button-height)) );
+    grid-template-areas:
+    '..... ..... ..... ..... .....'
+    '..... one   two   three .....'
+    '..... four  five  six   .....'
+    '..... seven eight nine  .....'
+    '..... clear clear clear .....'
+    ;
+
+    position: fixed;
+    /* margins */
+    bottom: 2vh;
+    left: 2vw;
+    right: 2vw;
+
+    width: 96vw;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  #Input-Pad > button
+  {
+    font-size: min( 6.5vw, calc( var(--mobile-input-button-height) - 1rem) );
+  }
+}
+
+/***************************************************************************/
+/* The following styles are for the test strip. Only available in dev mode */
+/***************************************************************************/
+#Test-Strip
+{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  column-gap: 2rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+
+  border: 1px solid red;
+}
+
+#Test-Strip button
+{
+  align-self: center;
+  padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+}
+
+#Test-Strip > form
+{
+  background-color: red;
+}
+
+#Test-Strip > form > label
+{
+  font-size: 0.8rem;
+}
+
+#test-input
+{
+  /*display: 'none',       /* doesn't take up space */
+  /*visibility: 'hidden',  /* takes up space */
+  border: 3px solid white;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+  
+  align-self: center;
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
+  height: 50%;
+  width: 2rem;
+  
+  text-align: center;
+}
+
+#test-input:focus
+{
+  border: 3px dotted white;
+  background-color: black;
+}
+/* 
+  documentation on :focus vs :focus-visible 
+  https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible
+*/
+#test-input:focus-visible
+{
+  outline: none;
+}
+
+/***************************************************/
+/* .Button-Section was used to style the tutorials */
+/* I followed and that are in Additions.tsx        */
+/***************************************************/
+.Button-Section {
+  color: #FFFFFF;
+}
+
+/***********************************************************/
+/* Everything past this point was included in the template */
+/***********************************************************/
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

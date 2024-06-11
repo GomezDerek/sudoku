@@ -1,0 +1,137 @@
+[
+    {
+        "id": "empty",
+        "format": "houses",
+        "type": "puzzle",
+        "source": null,
+        "house0": [ [null, null, null], [null, null, null], [null, null, null] ],
+        "house1": [ [null, null, null], [null, null, null], [null, null, null] ],
+        "house2": [ [null, null, null], [null, null, null], [null, null, null] ],
+        "house3": [ [null, null, null], [null, null, null], [null, null, null] ],
+        "house4": [ [null, null, null], [null, null, null], [null, null, null] ],
+        "house5": [ [null, null, null], [null, null, null], [null, null, null] ],
+        "house6": [ [null, null, null], [null, null, null], [null, null, null] ],
+        "house7": [ [null, null, null], [null, null, null], [null, null, null] ],
+        "house8": [ [null, null, null], [null, null, null], [null, null, null] ]
+    },
+    {
+        "id": "empty",
+        "format": "2d-array",
+        "type": "puzzle",
+        "source": null,
+        "board":
+        [
+            [ null, null, null,   null, null, null,   null, null, null ],
+            [ null, null, null,   null, null, null,   null, null, null ],
+            [ null, null, null,   null, null, null,   null, null, null ],
+  
+            [ null, null, null,   null, null, null,   null, null, null ],
+            [ null, null, null,   null, null, null,   null, null, null ],
+            [ null, null, null,   null, null, null,   null, null, null ],
+  
+            [ null, null, null,   null, null, null,   null, null, null ],
+            [ null, null, null,   null, null, null,   null, null, null ],
+            [ null, null, null,   null, null, null,   null, null, null ]
+        ]
+    },
+    {
+        "id": "solved-basic",
+        "format": "houses",
+        "type": "solution",
+        "source": null,
+        "house0": [ [1, 2, 3], [4, 5, 6], [7, 8, 9] ],
+        "house1": [ [4, 5, 6], [7, 8, 9], [1, 2, 3] ],
+        "house2": [ [7, 8, 9], [1, 2, 3], [4, 5, 6] ],
+
+        "house3": [ [5, 6, 7], [8, 9, 1], [2, 3, 4] ],
+        "house4": [ [8, 9, 1], [2, 3, 4], [5, 6, 7] ],
+        "house5": [ [2, 3, 4], [5, 6, 7], [8, 9, 1] ],
+        
+        "house6": [ [6, 7, 8], [9, 1, 2], [3, 4, 5] ],
+        "house7": [ [9, 1, 2], [3, 4, 5], [6, 7, 8] ],
+        "house8": [ [3, 4, 5], [6, 7, 8], [9, 1, 2] ]
+    },
+    {
+        "id": "solved-basic",
+        "format": "2d-array",
+        "type": "solution",
+        "source": null,
+        "board": 
+        [
+            [1, 2, 3,   4, 5, 6,   7, 8, 9],
+            [4, 5, 6,   7, 8, 9,   1, 2, 3],
+            [7, 8, 9,   1, 2, 3,   4, 5, 6],
+            
+            [5, 6, 7,   8, 9, 1,   2, 3, 4],
+            [8, 9, 1,   2, 3, 4,   5, 6, 7],
+            [2, 3, 4,   5, 6, 7,   8, 9, 1],
+
+            [6, 7, 8,   9, 1, 2,   3, 4, 5],
+            [9, 1, 2,   3, 4, 5,   6, 7, 8],
+            [3, 4, 5,   6, 7, 8,   9, 1, 2]
+        ]
+    },
+    {
+        "id": "easy-1",
+        "format": "2d-array",
+        "type": "puzzle",
+        "blankChar": null,
+        "source": "Sweet Sudoku by Will Shortz",
+        "board":
+        [
+            [null, null, 7,      null, 1, 4,         8, null, null],
+            [null, null, null,   null, null, null,   3, 7, 4],
+            [4, null, null,      null, 3, 7,         1, 2, null],
+
+            [null, null, 9,      null, 2, 1,         4, 6, 8],
+            [7, 6, null,         null, null, 3,      null, null, 5],
+            [null, 4, null,      null, null, 9,      2, null, null],
+
+            [null, 1, null,      3, null, 5,         null, null, null],
+            [5, null, null,      null, null, null,   null, 8, 3],
+            [null, 7, null,      6, 4, null,         5, 9, 1]
+        ]
+    },
+    {
+        "id": "easy-1",
+        "format": "2d-array",
+        "type": "puzzle",
+        "blankChar": 0,
+        "source": "Sweet Sudoku by Will Shortz",
+        "board":
+        [
+            [0, 0, 7,   0, 1, 4,   8, 0, 0],
+            [0, 0, 0,   0, 0, 0,   3, 7, 4],
+            [4, 0, 0,   0, 3, 7,   1, 2, 0],
+
+            [0, 0, 9,   0, 2, 1,   4, 6, 8],
+            [7, 6, 0,   0, 0, 3,   0, 0, 5],
+            [0, 4, 0,   0, 0, 9,   2, 0, 0],
+            
+            [0, 1, 0,   3, 0, 5,   0, 0, 0],
+            [5, 0, 0,   0, 0, 0,   0, 8, 3],
+            [0, 7, 0,   6, 4, 0,   5, 9, 1]
+        ]
+    },
+    {
+        "id": "easy-1",
+        "format": "2d-array",
+        "type": "solution",
+        "blankChar": null,
+        "source": "Sweet Sudoku by Will Shortz",
+        "board":
+        [
+            [6, 3, 7,   2, 1, 4,   8, 5, 9],
+            [9, 2, 1,   8, 5, 6,   3, 7, 4],
+            [4, 8, 5,   9, 3, 7,   1, 2, 6],
+
+            [3, 5, 9,   7, 2, 1,   4, 6, 8],
+            [7, 6, 2,   4, 8, 3,   9, 1, 5],
+            [1, 4, 8,   5, 6, 9,   2, 3, 7],
+            
+            [8, 1, 6,   3, 9, 5,   7, 4, 2],
+            [5, 9, 4,   1, 7, 2,   6, 8, 3],
+            [2, 7, 3,   6, 4, 8,   5, 9, 1]
+        ]
+    }
+]
