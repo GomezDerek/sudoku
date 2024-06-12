@@ -72,6 +72,7 @@ export default function Square(props: Props) {
                 
                 type="number"
                 maxLength={1}
+                readOnly
             > 
             </input>
         </div>
