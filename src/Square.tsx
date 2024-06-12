@@ -70,7 +70,7 @@ export default function Square(props: Props) {
                 }} 
                 onChange={ ()=>console.log(`this onChange only works for backspace, but not char input for some reason`) }
                 
-                type="text"
+                type="number"
                 maxLength={1}
             > 
             </input>
