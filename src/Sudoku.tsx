@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import House from './House';
 import Square from './Square';
 import SolutionChecker, { isDefault, isHouseValid, isRowValid, isColValid } from './Checker';
+import Menu from './Menu';
 import parsePuzzle from './Parser';
 
 import './App.css';
@@ -191,6 +192,7 @@ export default function Sudoku() {
 
     return(
         <div id="Sudoku">
+            <Menu />
             <h1 
                 id='Title'
                 onClick={()=>console.log(window.getComputedStyle(document.getElementById('Title')!).fontSize)}

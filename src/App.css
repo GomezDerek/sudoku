@@ -1,6 +1,8 @@
 :root
 {
   --white: #DDD;
+  --gray1: #999;
+  --black2: #1b1b1b;
   
   --house-gap: 1vw;
   --square-font-size: calc( 1rem + 10 * ((100vw - 1024px) / 1024) );
@@ -16,8 +18,125 @@
 
 body 
 { 
-  background-color: #1b1b1b;
+  background-color: var(--black2);
   color: var(--white);
+}
+
+/* the tutorial */
+#Tutorial-Button
+{
+  background: yellow;
+
+}
+
+/* styling the pop-up container */
+#Tutorial-Pop-Up
+{
+  --popup-width: 50vw;
+  --popup-height: 50vh;
+  
+  width: var(--popup-width);
+  height: var(--popup-height);
+
+  /* fix container to horizontal and vertical center */
+  position: fixed;
+  left: calc( (100vw - var(--popup-width)) / 2 );
+  top: calc( (100vh - var(--popup-height)) / 2 );
+
+  overflow: auto;
+  color: var(--white);
+
+  border: 1.5px solid var(--white);
+  background: #1b1b1b;
+}
+
+#X-Button
+{
+  position: absolute; /* for IE */
+  
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0.25rem;
+
+  /* width and padding adjustments format the x into the corner of the pop-up! */
+  width: 100%;
+  padding: 0 0 0 calc(100% - 2ex);
+  margin: 0;
+
+  background-color: transparent;
+  border: none;
+  
+  color: var(--white);
+  font-size: 1.5rem;
+  line-height: 1ex;
+  font-weight: bold;
+}
+
+#X-Button:hover
+{
+  color: var(--gray1);
+}
+
+#Opaque-Screen
+{
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #1b1b1b99;
+}
+
+#Play-Button
+{
+  margin-bottom: 1.5rem;
+}
+
+/* formatting the pop-up for mobile */
+@media screen and (max-width: 1023px)
+{
+  #Tutorial-Pop-Up
+  {
+    --mobile-popup-width: 70vw;
+    --mobile-popup-height: 70vh;
+    width: var(--mobile-popup-width);
+    height: min( auto, var(--mobile-popup-height) );
+
+    left: calc( (100vw - var(--mobile-popup-width)) / 2 );
+    top: calc( (100vh - var(--mobile-popup-height)) / 2 );
+  }
+
+  #X-Button
+  {
+    font-size: 2rem;
+  }
+}
+
+/* styling the pop-up copy */
+#Tutorial-Pop-Up > h2
+{
+  margin-top: -0.5rem;
+  margin-bottom: 0;
+}
+
+#Tutorial-Pop-Up > h2, 
+#Tutorial-Pop-Up > p,
+#Tutorial-Pop-Up > ul
+{
+  text-align: left;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#Tutorial-Pop-Up > ul
+{
+  padding-left: 2rem;
+}
+
+#Tutorial-Pop-Up > li:last-child
+{
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 /****************************************************************/
@@ -163,7 +282,7 @@ body
 
     font-size: min( calc(1.5rem + 3.5vw), 6vh );
 
-    border-bottom:2px solid #999;
+    border-bottom:2px solid var(--gray1);
   }
 
   #Game-Board
