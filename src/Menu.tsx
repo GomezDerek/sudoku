@@ -6,12 +6,12 @@ export default function Menu()
     return(
         <div style={{background: "green", width: 0, height: 0}}>
             
-            {/* <button 
+            <button 
                 id="Tutorial-Button"
                 onClick={ () => setPopUpVis(true) }
             >
-                HOW TO PLAY
-            </button> */}
+                ?
+            </button>
 
             <div id="Opaque-Screen" style={ {display: popUpVis ? "inherit" : "none" } }>
                 <div 

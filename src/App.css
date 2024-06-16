@@ -22,11 +22,29 @@ body
   color: var(--white);
 }
 
+button
+{
+  background-color: var(--white);
+  color: black;
+}
+
 /* the tutorial */
 #Tutorial-Button
 {
-  background: yellow;
+  --font-size: calc( var(--mobile-square-font-size) + 0.5rem );
+  --button-dimensions: calc( var(--font-size) + 0.5rem );
+  font-size: var(--font-size);
+  width: var(--button-dimensions);
+  height: var(--button-dimensions);
 
+  position: fixed;
+  right: 1em;
+  top: calc(10vh - var(--button-dimensions) - 0.7rem);
+
+  color: var(--white);
+  font-weight: bold;
+  border: 1px solid var(--white);
+  background-color: transparent;
 }
 
 /* styling the pop-up container */
@@ -215,7 +233,7 @@ body
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: auto;
     grid-template-areas:
-    '..... title title title .....'
+    'title title title title title'
     'board board board board board'
     'board board board board board'
     '..... input input input .....'
@@ -227,6 +245,7 @@ body
   {
     height: 10vh;
     color: var(--white);
+    text-align: left;
   }
   #Game-Board
   {
