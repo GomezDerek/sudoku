@@ -28,7 +28,7 @@ button
   color: black;
 }
 
-/* the tutorial */
+/* ? button that opens tutorial pop-up*/
 #Tutorial-Button
 {
   --font-size: calc( var(--mobile-square-font-size) + 0.5rem );
@@ -45,6 +45,16 @@ button
   font-weight: bold;
   border: 1px solid var(--white);
   background-color: transparent;
+}
+
+@media screen and (min-width: 1024px) 
+{
+  #Tutorial-Button
+  {
+    top: calc( 10vh - (var(--button-dimensions) / 2) );
+    /* color: yellow;
+    border: 1px solid yellow; */
+  }
 }
 
 /* styling the pop-up container */
@@ -108,6 +118,13 @@ button
 #Play-Button
 {
   margin-bottom: 1.5rem;
+  padding: 0.3rem 1.2rem 0.3rem 1.2rem;
+  border: 1.5px solid var(--black2)
+;}
+
+#Play-Button:hover
+{
+  background-color: var(--gray1);
 }
 
 /* formatting the pop-up for mobile */

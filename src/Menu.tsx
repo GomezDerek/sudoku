@@ -4,7 +4,7 @@ export default function Menu()
 {
     const [popUpVis, setPopUpVis] = useState<boolean>(false);
     return(
-        <div style={{background: "green", width: 0, height: 0}}>
+        <div style={{width: 0, height: 0}}>
             
             <button 
                 id="Tutorial-Button"
@@ -13,7 +13,10 @@ export default function Menu()
                 ?
             </button>
 
-            <div id="Opaque-Screen" style={ {display: popUpVis ? "inherit" : "none" } }>
+            <div 
+                id="Opaque-Screen" 
+                style={ {display: popUpVis ? "inherit" : "none", zIndex: 1} }
+            >
                 <div 
                     id="Tutorial-Pop-Up"
                     style={ {display: popUpVis ? "inherit" : "none" } }
