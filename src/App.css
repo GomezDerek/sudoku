@@ -1,11 +1,13 @@
 :root
 {
   --white: #DDD;
+  --gray2: #BBB;
   --gray1: #999;
   --black2: #1b1b1b;
   
   --house-gap: 1vw;
   --square-font-size: calc( 1rem + 10 * ((100vw - 1024px) / 1024) );
+  --square-border-size: calc( 2.7px + 2 * ((100vw - 1024px) / 1024) );
   --input-button-size: 2.8vw;
   
   --mobile-house-gap: 1.5vw;
@@ -28,6 +30,11 @@ button
   color: black;
 }
 
+button:hover, button:active
+{
+  background-color: var(--gray2);
+}
+
 /* ? button that opens tutorial pop-up*/
 #Tutorial-Button
 {
@@ -43,17 +50,41 @@ button
 
   color: var(--white);
   font-weight: bold;
-  border: 1px solid var(--white);
+  border: solid var(--white);
   background-color: transparent;
+}
+
+#Tutorial-Button:hover
+{
+  color: var(--gray1);
+  border-color: var(--gray1);
+}
+
+@media screen and (max-width: 1023px)
+{
+  #Tutorial-Button
+  {
+    border-width: var(--mobile-square-border-size);
+  }
 }
 
 @media screen and (min-width: 1024px) 
 {
   #Tutorial-Button
   {
-    top: calc( 10vh - (var(--button-dimensions) / 2) );
-    /* color: yellow;
-    border: 1px solid yellow; */
+    /* based off of #Title font-size is calc(1rem + 2vw) */
+    font-size: calc(1rem + 1.2vw);
+    --button-dimensions: calc(1.5rem + 1.2vw);
+    width: var(--button-dimensions);
+    height: var(--button-dimensions);
+
+    /* top: calc( 7.5vh - (var(--button-dimensions) / 2) ); */
+    /* top is padding-top + #Title font-size */
+    top: calc(3vh + 1rem + 2vw - var(--button-dimensions) * 0.75);
+    /* #Sudoku margin-right: 5% */
+    right: calc(5% + 1rem);
+
+    border-width: calc( var(--square-border-size) - 1px );
   }
 }
 
@@ -76,6 +107,8 @@ button
 
   border: 1.5px solid var(--white);
   background: #1b1b1b;
+
+  z-index: 10;
 }
 
 #X-Button
@@ -98,6 +131,8 @@ button
   font-size: 1.5rem;
   line-height: 1ex;
   font-weight: bold;
+
+  z-index: 10;
 }
 
 #X-Button:hover
@@ -113,18 +148,22 @@ button
   height: 100vh;
 
   background-color: #1b1b1b99;
+
+  z-index: 10;
 }
 
 #Play-Button
 {
   margin-bottom: 1.5rem;
   padding: 0.3rem 1.2rem 0.3rem 1.2rem;
-  border: 1.5px solid var(--black2)
-;}
+  border: 1.5px solid var(--black2);
+  
+  z-index: 10;
+}
 
 #Play-Button:hover
 {
-  background-color: var(--gray1);
+  background-color: var(--gray2);
 }
 
 /* formatting the pop-up for mobile */
@@ -181,15 +220,6 @@ button
 {
   border: none;
 }
-
-/* add borders for mobile dev purposes */
-/* @media screen and (max-width: 1023px)
-{
-  #Sudoku, #Game-Board, #Input-Pad, #Title
-  {
-    border: 1px solid white;
-  }
-} */
 
 #Sudoku 
 {
@@ -440,7 +470,7 @@ button
 .Square 
 {
   /* border: solid 1px #555; */
-  border: ridge calc( 2.7px + 2 * ((100vw - 1024px) / 1024) ) #999999FF;
+  border: ridge var(--square-border-size) #999999FF;
   margin: 0px;
   width: 30%;
   height: 88%;
@@ -544,6 +574,11 @@ button
   color: #000;
   border: 1.5px solid black;
   background-color: var(--white);
+}
+
+#Input-Pad > button:hover, #Input-Pad > button:active
+{
+  background-color: var(--gray2);
 }
 
 /* desktop format for input pad */
