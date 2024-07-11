@@ -35,8 +35,9 @@ button:hover, button:active
   background-color: var(--gray2);
 }
 
-/* ? button that opens tutorial pop-up*/
-#Tutorial-Button
+/* ? button that opens tutorial pop-up */
+/* and finish flag button that also activates a pop-up */
+#Tutorial-Button, #Finish-Button
 {
   --font-size: calc( var(--mobile-square-font-size) + 0.5rem );
   --button-dimensions: calc( var(--font-size) + 0.5rem );
@@ -45,7 +46,6 @@ button:hover, button:active
   height: var(--button-dimensions);
 
   position: fixed;
-  right: 1em;
   top: calc(10vh - var(--button-dimensions) - 0.7rem);
 
   color: var(--white);
@@ -54,15 +54,74 @@ button:hover, button:active
   background-color: transparent;
 }
 
-#Tutorial-Button:hover
+/* positioning for mobile */
+#Tutorial-Button
+{
+  right: 1em;
+}
+#Finish-Button
+{
+  right: calc(2rem + var(--button-dimensions));
+}
+
+/* this is the finish-flag.svg */
+#Finish-Button img
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#Tutorial-Button:hover, #Tutorial-Button:active, #Finish-Button:hover, #Finish-Button:active
 {
   color: var(--gray1);
   border-color: var(--gray1);
 }
 
+#Finish-Button:hover img, #Finish-Button:active img
+{
+  filter: invert(72%) sepia(2%) saturate(0%) hue-rotate(327deg) brightness(100%) contrast(0%);
+}
+/* NOTE: format finish button for mobile */
+
+/*  tool-tips for the menu buttons */
+#Tutorial-Tool-Tip, #Finish-Tool-Tip
+{
+  visibility: hidden;
+
+  position: absolute;
+  top: 115%;
+
+  padding: calc( var(--font-size) / 5 );
+  background-color: var(--white);
+  
+  color: var(--black2);
+  font-size: calc(var(--font-size) / 4);
+  white-space: nowrap;
+}
+
+#Tutorial-Tool-Tip
+{
+  right: -2px;
+}
+
+#Finish-Tool-Tip
+{
+  left: -2px;
+}
+
+/* make tool tips visible upon hover */
+#Tutorial-Button:hover #Tutorial-Tool-Tip, #Finish-Button:hover #Finish-Tool-Tip
+{
+  visibility: visible;
+}
+
+
 @media screen and (max-width: 1023px)
 {
-  #Tutorial-Button
+  #Tutorial-Button, #Finish-Button
   {
     border-width: var(--mobile-square-border-size);
   }
@@ -70,7 +129,7 @@ button:hover, button:active
 
 @media screen and (min-width: 1024px) 
 {
-  #Tutorial-Button
+  #Tutorial-Button, #Finish-Button
   {
     /* based off of #Title font-size is calc(1rem + 2vw) */
     font-size: calc(1rem + 1.2vw);
@@ -86,10 +145,20 @@ button:hover, button:active
 
     border-width: calc( var(--square-border-size) - 1px );
   }
+  
+  #Tutorial-Button
+  {
+    right: calc(5% + 1rem);
+  }
+
+  #Finish-Button
+  {
+    right: calc(5% + 2rem + var(--button-dimensions));
+  }
 }
 
-/* styling the pop-up container */
-#Tutorial-Pop-Up
+/* styling the pop-up containers */
+#Tutorial-Pop-Up, #Finish-Pop-Up
 {
   --popup-width: 50vw;
   --popup-height: 50vh;
@@ -108,10 +177,11 @@ button:hover, button:active
   border: 1.5px solid var(--white);
   background: #1b1b1b;
 
-  z-index: 10;
+  z-index: 1000;
 }
 
-#X-Button
+/* #X-Button */
+.x-button
 {
   position: absolute; /* for IE */
   
@@ -132,12 +202,14 @@ button:hover, button:active
   line-height: 1ex;
   font-weight: bold;
 
-  z-index: 10;
+  z-index: 100;
 }
 
-#X-Button:hover
+/* #X-Button:hover */
+.x-button:hover, .x-button:active
 {
   color: var(--gray1);
+  background-color: transparent;
 }
 
 #Opaque-Screen
@@ -149,10 +221,11 @@ button:hover, button:active
 
   background-color: #1b1b1b99;
 
-  z-index: 10;
+  z-index: 1000;
 }
 
-#Play-Button
+/* #Play-Button */
+.popup-primary-button, .popup-secondary-button
 {
   margin-bottom: 1.5rem;
   padding: 0.3rem 1.2rem 0.3rem 1.2rem;
@@ -161,15 +234,31 @@ button:hover, button:active
   z-index: 10;
 }
 
-#Play-Button:hover
+/* #Play-Button:hover */
+.popup-primary-button:hover, .popup-primary-button:active
 {
   background-color: var(--gray2);
+}
+
+.popup-secondary-button
+{
+  padding: calc(0.3rem - 2px) 1.2rem calc(0.3rem - 2px) 1.2rem;
+  color: var(--white);
+  border-color: var(--white);
+  background-color: transparent;
+}
+
+.popup-secondary-button:hover, .popup-secondary-button:active
+{
+  color: var(--gray1);
+  border-color: var(--gray1);
+  background-color: transparent;
 }
 
 /* formatting the pop-up for mobile */
 @media screen and (max-width: 1023px)
 {
-  #Tutorial-Pop-Up
+  #Tutorial-Pop-Up, #Finish-Pop-Up
   {
     --mobile-popup-width: 70vw;
     --mobile-popup-height: 70vh;
@@ -180,7 +269,8 @@ button:hover, button:active
     top: calc( (100vh - var(--mobile-popup-height)) / 2 );
   }
 
-  #X-Button
+  /* #X-Button */
+  .x-button
   {
     font-size: 2rem;
   }

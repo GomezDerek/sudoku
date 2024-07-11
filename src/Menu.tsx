@@ -1,29 +1,49 @@
 import React, { useState } from 'react';
-
+import finishLine from './finish-flag.svg';
 export default function Menu()
 {
-    const [popUpVis, setPopUpVis] = useState<boolean>(false);
+    const [tutorialVis, setTutorialVis] = useState<boolean>(false);
+    const [finishVis, setFinishVis] = useState<boolean>(false);
+    
     return(
         <div style={{width: 0, height: 0}}>
-            
-            <button 
-                id="Tutorial-Button"
-                onClick={ () => setPopUpVis(true) }
+
+            {/* menu buttons */}
+            <button
+                id="Finish-Button"
+                className="menu-button"
+                onClick={ () => setFinishVis(true) }
             >
-                ?
+                <img 
+                    src={finishLine} 
+                    alt="finish line icon"
+                />
+                <span id="Finish-Tool-Tip" className="tool-tip">Check solution</span>
             </button>
 
-            <div 
-                id="Opaque-Screen" 
-                style={ {display: popUpVis ? "inherit" : "none", zIndex: 1} }
+            <button 
+                id="Tutorial-Button"
+                className="menu-button"
+                onClick={ () => setTutorialVis(true) }
             >
+                ?
+                <span id="Tutorial-Tool-Tip" className="tool-tip">Learn how to play</span>
+            </button>
+
+            {/*Pop-Ups*/}
+            <div 
+                id="Opaque-Screen"
+                style={ {display: tutorialVis || finishVis ? "inherit" : "none", zIndex: 1} }
+            >
+
                 <div 
                     id="Tutorial-Pop-Up"
-                    style={ {display: popUpVis ? "inherit" : "none" } }
+                    style={ {display: tutorialVis ? "inherit" : "none" } }
                 >
                     <button 
                         id="X-Button"
-                        onClick={ () => setPopUpVis(false) }
+                        className="x-button"
+                        onClick={ () => setTutorialVis(false) }
                     >
                         x
                     </button>
@@ -36,9 +56,36 @@ export default function Menu()
                     </ul>
                     <button 
                         id="Play-Button"
-                        onClick={ ()=> setPopUpVis(false) }
+                        className="popup-primary-button"
+                        onClick={ ()=> setTutorialVis(false) }
                     >
                         PLAY
+                    </button>
+                </div>
+
+                <div
+                    id="Finish-Pop-Up"
+                    style={ {display: finishVis ? "inherit" : "none"} }
+                >
+                    <button
+                        id="X-Finish"
+                        className="x-button"
+                        onClick={ () => setFinishVis(false) }
+                    >
+                        x
+                    </button>
+                    <h1>Are you ready to check if your puzzle is correctly solved?</h1>
+                    <button
+                        className="popup-primary-button"
+                        onClick={ () => setFinishVis(false)}
+                    >
+                        yes
+                    </button>
+                    <button
+                        className="popup-secondary-button"
+                        onClick={ () => setFinishVis(false)}
+                    >
+                        no
                     </button>
                 </div>
             </div>
