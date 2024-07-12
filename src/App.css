@@ -158,7 +158,8 @@ button:hover, button:active
 }
 
 /* styling the pop-up containers */
-#Tutorial-Pop-Up, #Finish-Pop-Up
+/* #Tutorial-Pop-Up, #Finish-Pop-Up,  */
+.popup
 {
   --popup-width: 50vw;
   --popup-height: 50vh;

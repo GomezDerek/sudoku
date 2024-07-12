@@ -190,9 +190,20 @@ export default function Sudoku() {
         }
     }
 
+    function isBoardFull(): boolean
+    {
+        console.log('We are flattening hosues!');
+        let flatHouses = houses.map( house => house.squares.flat() );
+        console.log(flatHouses);
+        let completelyFlat = flatHouses.flat();
+        console.log(completelyFlat);
+        
+        return completelyFlat.every( square => {return !isDefault(square, defaultValue)} );
+    }
+
     return(
         <div id="Sudoku">
-            <Menu />
+            <Menu fx0={ ()=>SolutionChecker(houses) } fx1={ ()=>isBoardFull() } />
             <h1 
                 id='Title'
                 onClick={()=>console.log(window.getComputedStyle(document.getElementById('Title')!).fontSize)}

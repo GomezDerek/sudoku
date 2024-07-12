@@ -47,23 +47,27 @@ export default function SolutionChecker(board: HouseType[]): boolean
 
 /**
  * checks if a <Square> component has a user-assigned value or the default value
- * @param    {FC}       square   a <Square> component 
- * @returns  {boolean}           does the square component have a user-assigned value
+ * @param    {FC}       square      a <Square> component 
+ * @param    {string}   defaultVal  the default value that <Sudoku> uses for blank squares 
+ * @returns  {boolean}              does the square component have a user-assigned value
  */
-export function isFilled(square: SquareType): boolean
+export function isFilled(square: SquareType, defaultVal?: string): boolean
 {
-    let defaultValue = "X";
+    // let defaultValue = "X";
+    let defaultValue = typeof defaultVal === "string" ? defaultVal : "X"; 
     return !(square.props.value === defaultValue);
 }
 
 /**
  * checks if a <Square> component has a default value or a user-assigned value
- * @param    {FC}       square   a <Square> component 
- * @returns  {boolean}           does the square component have a default value
+ * @param    {FC}       square      a <Square> component 
+ * @param    {string}   defaultVal  the default value that <Sudoku> uses for blank squares 
+ * @returns  {boolean}              does the square component have a default value
  */
-export function isDefault(square: SquareType): boolean
+export function isDefault(square: SquareType, defaultVal?: string): boolean
 {
-    let defaultValue= "X";
+    // let defaultValue= "X";
+    let defaultValue = typeof defaultVal === "string" ? defaultVal : "X"; 
     return square.props.value === defaultValue;
 }
 

@@ -1,16 +1,34 @@
 import React, { useState } from 'react';
 import finishLine from './finish-flag.svg';
-export default function Menu()
+
+type Props =
+{
+    fx0? : ()=>boolean /* this will be the check solution function */
+    fx1? : ()=>boolean /* this will be the reset board button */
+}
+
+export default function Menu(props: Props)
 {
     const [tutorialVis, setTutorialVis] = useState<boolean>(false);
     const [finishVis, setFinishVis] = useState<boolean>(false);
+    const [solutionVis, setSolutionVis] = useState<boolean>(false);
+    const [solved, setSolved] = useState<boolean>(false);
+
+    /**
+     * this function provides the display style for the pop-ups, conditional upon the useStates
+     * @param    {boolean}  conditional  a bool expression that will determine pop-up visibility
+     * @returns  {object}                display style set to either "inherit" or "none"
+     */
+    function visibleIf(conditional: boolean): {display: string}
+    {
+        return {display: conditional ? "inherit" : "none"};
+    }
     
     return(
         <div style={{width: 0, height: 0}}>
 
             {/* menu buttons */}
-            <button
-                id="Finish-Button"
+            <button id="Finish-Button"
                 className="menu-button"
                 onClick={ () => setFinishVis(true) }
             >
@@ -21,8 +39,7 @@ export default function Menu()
                 <span id="Finish-Tool-Tip" className="tool-tip">Check solution</span>
             </button>
 
-            <button 
-                id="Tutorial-Button"
+            <button id="Tutorial-Button"
                 className="menu-button"
                 onClick={ () => setTutorialVis(true) }
             >
@@ -31,14 +48,13 @@ export default function Menu()
             </button>
 
             {/*Pop-Ups*/}
-            <div 
-                id="Opaque-Screen"
-                style={ {display: tutorialVis || finishVis ? "inherit" : "none", zIndex: 1} }
+            <div id="Opaque-Screen"
+                style={ visibleIf(tutorialVis || finishVis || solutionVis) }
             >
 
-                <div 
-                    id="Tutorial-Pop-Up"
-                    style={ {display: tutorialVis ? "inherit" : "none" } }
+                <div id="Tutorial-Pop-Up"
+                    className="popup"
+                    style={ visibleIf(tutorialVis) }
                 >
                     <button 
                         id="X-Button"
@@ -63,9 +79,9 @@ export default function Menu()
                     </button>
                 </div>
 
-                <div
-                    id="Finish-Pop-Up"
-                    style={ {display: finishVis ? "inherit" : "none"} }
+                <div id="Finish-Pop-Up"
+                    className="popup"
+                    style={ visibleIf(finishVis) }
                 >
                     <button
                         id="X-Finish"
@@ -74,10 +90,14 @@ export default function Menu()
                     >
                         x
                     </button>
-                    <h1>Are you ready to check if your puzzle is correctly solved?</h1>
+                    <h2>Are you ready to check if your puzzle is correctly solved?</h2>
                     <button
                         className="popup-primary-button"
-                        onClick={ () => setFinishVis(false)}
+                        onClick={ () => {
+                            setFinishVis(false); 
+                            setSolutionVis(true);
+                            setSolved(props.fx0!());
+                        }}
                     >
                         yes
                     </button>
@@ -86,6 +106,25 @@ export default function Menu()
                         onClick={ () => setFinishVis(false)}
                     >
                         no
+                    </button>
+                </div>
+
+                <div id="Solved-Pop-Up" 
+                    className="popup"
+                    style={ visibleIf(solutionVis && solved) }
+                >
+                    <h2>Your puzzle is solved!</h2>
+                </div>
+
+                <div id="Unsolved" 
+                    className="popup"
+                    style={ visibleIf(solutionVis && !solved) }>
+                    <h2>Your puzzle is NOT solved!</h2>
+                    <button 
+                        className="popup-primary-button"
+                        onClick={ () => setSolutionVis(false) }
+                    >
+                        ok
                     </button>
                 </div>
             </div>
