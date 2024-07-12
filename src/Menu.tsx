@@ -113,12 +113,24 @@ export default function Menu(props: Props)
                     className="popup"
                     style={ visibleIf(solutionVis && solved) }
                 >
+                    <button
+                        className="x-button"
+                        onClick={ ()=>setSolutionVis(false) }
+                    >
+                        x
+                    </button>
                     <h2>Your puzzle is solved!</h2>
                 </div>
 
                 <div id="Unsolved" 
                     className="popup"
                     style={ visibleIf(solutionVis && !solved) }>
+                    <button
+                        className="x-button"
+                        onClick={ ()=>setSolutionVis(false) }
+                    >
+                        x
+                    </button>
                     <h2>Your puzzle is NOT solved!</h2>
                     <button 
                         className="popup-primary-button"
