@@ -316,13 +316,9 @@ button:hover, button:active
   text-align: left;
 }  
 
-.popup > h2
-{
-  margin-top: -0.5rem;
-}
-
 #Tutorial-Pop-Up > h2
 {
+  margin-top: 0.5rem;
   margin-bottom: 0;
 }
 
