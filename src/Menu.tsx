@@ -14,6 +14,12 @@ export default function Menu(props: Props)
     const [solutionVis, setSolutionVis] = useState<boolean>(false);
     const [solved, setSolved] = useState<boolean>(false);
 
+    let unsolvedMessages = 
+    [
+        "the puzzle is still incomplete! Fill each square with a number 1-9",
+        "a duplicate number exists somewhere! Double check your solution!"
+    ];
+
     /**
      * this function provides the display style for the pop-ups, conditional upon the useStates
      * @param    {boolean}  conditional  a bool expression that will determine pop-up visibility
@@ -119,12 +125,20 @@ export default function Menu(props: Props)
                     >
                         x
                     </button>
-                    <h2>Your puzzle is solved!</h2>
+                    <h2>Your puzzle is solved! 🎉</h2>
+                    <h3>Good job!</h3>
+                    <button
+                        className="popup-primary-button"
+                        onClick={ ()=>setSolutionVis(false) }
+                    >
+                        admire your finished puzzle
+                    </button>
                 </div>
 
                 <div id="Unsolved" 
                     className="popup"
-                    style={ visibleIf(solutionVis && !solved) }>
+                    style={ visibleIf(solutionVis && !solved) }
+                >
                     <button
                         className="x-button"
                         onClick={ ()=>setSolutionVis(false) }
@@ -132,11 +146,12 @@ export default function Menu(props: Props)
                         x
                     </button>
                     <h2>Your puzzle is NOT solved!</h2>
+                    <p>{ props.fx1!() ? unsolvedMessages[1] : unsolvedMessages[0] }</p>
                     <button 
                         className="popup-primary-button"
                         onClick={ () => setSolutionVis(false) }
                     >
-                        ok
+                        OK
                     </button>
                 </div>
             </div>

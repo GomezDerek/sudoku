@@ -26,7 +26,7 @@ let initialHouses: HouseType[] = Array(9).fill(
     )}
 );
 
-const devMode = false;
+const devMode = true;
 export const defaultValue: string = " ";
 
 export default function Sudoku() {
@@ -192,11 +192,8 @@ export default function Sudoku() {
 
     function isBoardFull(): boolean
     {
-        console.log('We are flattening hosues!');
         let flatHouses = houses.map( house => house.squares.flat() );
-        console.log(flatHouses);
         let completelyFlat = flatHouses.flat();
-        console.log(completelyFlat);
         
         return completelyFlat.every( square => {return !isDefault(square, defaultValue)} );
     }
