@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
-import finishLine from './finish-flag.svg';
+import XButton from './XButton';
+import finishLine from './svgs/finish-flag.svg';
+import restartIcon from './svgs/restart.svg';
 
 type Props =
 {
-    fx0? : ()=>boolean /* this will be the check solution function */
-    fx1? : ()=>boolean /* this will be the reset board button */
+    fx0? : ()=>boolean /* SolutionChecker(houses), checks if the puzzle is solved */
+    fx1? : ()=>boolean /* isBoardFull(), checks if the user has filled every user-available square */
+    fx2? : ()=>void    /* setHouses(parsePuzzle(...)), resets the puzzle */
 }
 
 export default function Menu(props: Props)
 {
-    const [tutorialVis, setTutorialVis] = useState<boolean>(false);
+    const [resetVis, setResetVis] = useState<boolean>(false);
     const [finishVis, setFinishVis] = useState<boolean>(false);
+    const [tutorialVis, setTutorialVis] = useState<boolean>(false);
     const [solutionVis, setSolutionVis] = useState<boolean>(false);
     const [solved, setSolved] = useState<boolean>(false);
 
     let unsolvedMessages = 
     [
-        "the puzzle is still incomplete! Fill each square with a number 1-9",
-        "a duplicate number exists somewhere! Double check your solution!"
+        "the puzzle is still incomplete. Fill each square with a number 1-9",
+        "a duplicate number exists somewhere. Double check your solution"
     ];
 
     /**
@@ -34,6 +38,15 @@ export default function Menu(props: Props)
         <div style={{width: 0, height: 0}}>
 
             {/* menu buttons */}
+            <button id="Restart-Button"
+                className="menu-button"
+                onClick={ () => setResetVis(true) }
+            >
+                <img
+                    src={restartIcon}
+                    alt="restart icon"
+                />
+            </button>
             <button id="Finish-Button"
                 className="menu-button"
                 onClick={ () => setFinishVis(true) }
@@ -55,20 +68,14 @@ export default function Menu(props: Props)
 
             {/*Pop-Ups*/}
             <div id="Opaque-Screen"
-                style={ visibleIf(tutorialVis || finishVis || solutionVis) }
+                style={ visibleIf(tutorialVis || finishVis || solutionVis || resetVis) }
             >
 
                 <div id="Tutorial-Pop-Up"
                     className="popup"
                     style={ visibleIf(tutorialVis) }
                 >
-                    <button 
-                        id="X-Button"
-                        className="x-button"
-                        onClick={ () => setTutorialVis(false) }
-                    >
-                        x
-                    </button>
+                    <XButton onClick={ () => setTutorialVis(false) } />
                     <h1>HOW TO PLAY</h1>
                     <p>To win, every square must have a number (1-9) BUT</p>
                     <ul>
@@ -89,14 +96,8 @@ export default function Menu(props: Props)
                     className="popup"
                     style={ visibleIf(finishVis) }
                 >
-                    <button
-                        id="X-Finish"
-                        className="x-button"
-                        onClick={ () => setFinishVis(false) }
-                    >
-                        x
-                    </button>
-                    <h2>Are you ready to check if your puzzle is correctly solved?</h2>
+                    <XButton  onClick={ () => setFinishVis(false)} />
+                    <h2>Check if your puzzle is correctly solved?</h2>
                     <button
                         className="popup-primary-button"
                         onClick={ () => {
@@ -105,13 +106,13 @@ export default function Menu(props: Props)
                             setSolved(props.fx0!());
                         }}
                     >
-                        yes
+                        check
                     </button>
                     <button
                         className="popup-secondary-button"
-                        onClick={ () => setFinishVis(false)}
+                        onClick={ () => setFinishVis(false) }
                     >
-                        no
+                        cancel
                     </button>
                 </div>
 
@@ -119,12 +120,7 @@ export default function Menu(props: Props)
                     className="popup"
                     style={ visibleIf(solutionVis && solved) }
                 >
-                    <button
-                        className="x-button"
-                        onClick={ ()=>setSolutionVis(false) }
-                    >
-                        x
-                    </button>
+                    <XButton onClick={ () => setSolutionVis(false) } />
                     <h2>Your puzzle is solved! 🎉</h2>
                     <h3>Good job!</h3>
                     <button
@@ -139,13 +135,8 @@ export default function Menu(props: Props)
                     className="popup"
                     style={ visibleIf(solutionVis && !solved) }
                 >
-                    <button
-                        className="x-button"
-                        onClick={ ()=>setSolutionVis(false) }
-                    >
-                        x
-                    </button>
-                    <h2>Your puzzle is NOT solved!</h2>
+                    <XButton onClick={ () => setSolutionVis(false) } />
+                    <h2>Your puzzle isn't solved yet! 😱</h2>
                     <p>{ props.fx1!() ? unsolvedMessages[1] : unsolvedMessages[0] }</p>
                     <button 
                         className="popup-primary-button"
@@ -154,8 +145,28 @@ export default function Menu(props: Props)
                         OK
                     </button>
                 </div>
-            </div>
 
+                <div id="Reset-Pop-up"
+                className="popup"
+                style={ visibleIf(resetVis) }
+            >
+                <XButton onClick={ () =>setResetVis(false) } />
+                <h2>Reset the puzzle?</h2>
+                <p>⚠️ Progress will not be saved ⚠️</p>
+                <button
+                    className="popup-primary-button"
+                    onClick={ () => { props.fx2!(); setResetVis(false); } }
+                >
+                    reset
+                </button>
+                <button
+                    className="popup-secondary-button"
+                    onClick={ () => setResetVis(false) }
+                >
+                    cancel
+                </button>
+            </div>
+            </div>
         </div>
     );
 }

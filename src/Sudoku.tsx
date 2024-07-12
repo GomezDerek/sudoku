@@ -200,7 +200,11 @@ export default function Sudoku() {
 
     return(
         <div id="Sudoku">
-            <Menu fx0={ ()=>SolutionChecker(houses) } fx1={ ()=>isBoardFull() } />
+            <Menu 
+                fx0={ ()=>SolutionChecker(houses) } 
+                fx1={ ()=>isBoardFull() } 
+                fx2={ ()=>setHouses(parsePuzzle("easy-1", "puzzle", setSelectedSquare, changeSquareVal))} 
+            />
             <h1 
                 id='Title'
                 onClick={()=>console.log(window.getComputedStyle(document.getElementById('Title')!).fontSize)}
