@@ -26,7 +26,7 @@ let initialHouses: HouseType[] = Array(9).fill(
     )}
 );
 
-const devMode = true;
+const devMode = false;
 export const defaultValue: string = " ";
 
 export default function Sudoku() {
