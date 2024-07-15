@@ -490,21 +490,18 @@ button:hover, button:active
 }
 
 /* mobile positioning for menu buttons */
-
-/* #Tutorial-Button */
-.menu-button:last-child
+/* the following buttons are ordered from right to left */
+#Tutorial-Button
 {
   right: 1em;
 }
 
-/* #Finish-Button */
-.menu-button:nth-last-child(2)
+#Finish-Button
 {
   right: calc(1.5em + var(--button-dimensions));
 }
 
-/* #Restart-Button */
-.menu-button:nth-last-child(3)
+#Restart-Button
 {
   right: calc(2em + 2 * var(--button-dimensions));
 }
@@ -530,22 +527,20 @@ button:hover, button:active
     border-width: calc( var(--square-border-size) - 1px );
   }
   
-  /* #Tutorial-Button */
-  .menu-button:last-child
+  /* the following buttons are ordered from right to left */
+  #Tutorial-Button
   {
     right: calc(5% + 1rem);
   }
 
-  /* #Finish-Button */
-  .menu-button:nth-last-child(2)
-  {
-    right: calc(5% + 2rem + var(--button-dimensions));
-  }
-
-  /* #Restart-Button */
-  .menu-button:nth-last-child(3)
+  #Restart-Button
   {
     right: calc(5% + 3rem + 2 * var(--button-dimensions));
+  }
+  
+  #Finish-Button
+  {
+    right: calc(5% + 2rem + var(--button-dimensions));
   }
 }
 
@@ -590,13 +585,14 @@ button:hover, button:active
 
   position: absolute;
   top: 115%;
-  right: -2px;
+  left: 50%;
+  transform: translate(-50%, 0%);
 
-  padding: calc(var(--font-size) / 5);
-  background-color: var(--white);
+  padding: calc(var(--font-size) / 6);
+  background-color: var(--gray2);
   
   color: var(--black2);
-  font-size: calc(var(--font-size) / 4);
+  font-size: calc(var(--font-size) / 5);
   white-space: nowrap;
 }
 
