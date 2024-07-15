@@ -39,16 +39,18 @@ export default function Menu(props: Props)
 
             {/* menu buttons */}
             <button id="Restart-Button"
-                className="menu-button"
+                className="menu-button svg-button"
                 onClick={ () => setResetVis(true) }
             >
                 <img
                     src={restartIcon}
                     alt="restart icon"
                 />
+                <span id="Restart-Tool-Tip" className="tool-tip">Restart puzzle</span>
             </button>
+
             <button id="Finish-Button"
-                className="menu-button"
+                className="menu-button svg-button"
                 onClick={ () => setFinishVis(true) }
             >
                 <img 
@@ -59,7 +61,7 @@ export default function Menu(props: Props)
             </button>
 
             <button id="Tutorial-Button"
-                className="menu-button"
+                className="menu-button svg-button"
                 onClick={ () => setTutorialVis(true) }
             >
                 ?

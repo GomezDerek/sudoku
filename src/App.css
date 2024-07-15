@@ -35,304 +35,6 @@ button:hover, button:active
   background-color: var(--gray2);
 }
 
-/* ? button that opens tutorial pop-up */
-/* and finish flag button that also activates a pop-up */
-/* #Tutorial-Button, #Finish-Button */
-.menu-button
-{
-  --font-size: calc( var(--mobile-square-font-size) + 0.5rem );
-  --button-dimensions: calc( var(--font-size) + 0.5rem );
-  font-size: var(--font-size);
-  width: var(--button-dimensions);
-  height: var(--button-dimensions);
-
-  position: fixed;
-  top: calc(10vh - var(--button-dimensions) - 0.7rem);
-
-  color: var(--white);
-  font-weight: bold;
-  border: solid var(--white);
-  background-color: transparent;
-}
-
-/* positioning for mobile */
-#Tutorial-Button
-{
-  right: 1em;
-}
-#Finish-Button
-{
-  right: calc(1.5em + var(--button-dimensions));
-}
-#Restart-Button
-{
-  right: calc(2em + 2 * var(--button-dimensions));
-}
-
-/* these are the button svgs */
-#Finish-Button img
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-#Restart-Button img
-{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 85%;
-  height: 85%;
-}
-
-.menu-button:hover, .menu-button:active
-{
-  color: var(--gray1);
-  background-color: transparent;
-  border-color: var(--gray1);
-}
-
-#Finish-Button:hover img, #Finish-Button:active img, #Restart-Button:hover img, #Restart-Button:active img
-{
-  filter: invert(72%) sepia(2%) saturate(0%) hue-rotate(327deg) brightness(100%) contrast(0%);
-}
-/* NOTE: format finish button for mobile */
-
-/*  tool-tips for the menu buttons */
-#Tutorial-Tool-Tip, #Finish-Tool-Tip
-{
-  visibility: hidden;
-
-  position: absolute;
-  top: 115%;
-
-  padding: calc( var(--font-size) / 5 );
-  background-color: var(--white);
-  
-  color: var(--black2);
-  font-size: calc(var(--font-size) / 4);
-  white-space: nowrap;
-}
-
-#Tutorial-Tool-Tip
-{
-  right: -2px;
-}
-
-#Finish-Tool-Tip
-{
-  left: -2px;
-}
-
-/* make tool tips visible upon hover */
-#Tutorial-Button:hover #Tutorial-Tool-Tip, #Finish-Button:hover #Finish-Tool-Tip
-{
-  visibility: visible;
-}
-
-
-@media screen and (max-width: 1023px)
-{
-  .menu-button
-  {
-    border-width: var(--mobile-square-border-size);
-  }
-}
-
-@media screen and (min-width: 1024px) 
-{
-  .menu-button
-  {
-    /* based off of #Title font-size is calc(1rem + 2vw) */
-    font-size: calc(1rem + 1.2vw);
-    --button-dimensions: calc(1.5rem + 1.2vw);
-    width: var(--button-dimensions);
-    height: var(--button-dimensions);
-
-    /* top: calc( 7.5vh - (var(--button-dimensions) / 2) ); */
-    /* top is padding-top + #Title font-size */
-    top: calc(3vh + 1rem + 2vw - var(--button-dimensions) * 0.75);
-    /* #Sudoku margin-right: 5% */
-    right: calc(5% + 1rem);
-
-    border-width: calc( var(--square-border-size) - 1px );
-  }
-  
-  #Tutorial-Button
-  {
-    right: calc(5% + 1rem);
-  }
-
-  #Finish-Button
-  {
-    right: calc(5% + 2rem + var(--button-dimensions));
-  }
-
-  #Restart-Button
-  {
-    right: calc(5% + 3rem + 2 * var(--button-dimensions));
-  }
-}
-
-/* styling the pop-up containers */
-/* #Tutorial-Pop-Up, #Finish-Pop-Up,  */
-.popup
-{
-  --popup-width: 50vw;
-  --popup-height: 50vh;
-  
-  width: var(--popup-width);
-  height: var(--popup-height);
-
-  /* fix container to horizontal and vertical center */
-  position: fixed;
-  left: calc( (100vw - var(--popup-width)) / 2 );
-  top: calc( (100vh - var(--popup-height)) / 2 );
-
-  overflow: auto;
-  color: var(--white);
-
-  border: 1.5px solid var(--white);
-  background: #1b1b1b;
-
-  z-index: 1000;
-}
-
-/* #X-Button */
-.x-button
-{
-  position: absolute; /* for IE */
-  
-  position: -webkit-sticky; /* for Safari */
-  position: sticky;
-  top: 0.25rem;
-
-  /* width and padding adjustments format the x into the corner of the pop-up! */
-  width: 100%;
-  padding: 0 0 0 calc(100% - 2ex);
-  margin: 0;
-
-  background-color: transparent;
-  border: none;
-  
-  color: var(--white);
-  font-size: 1.5rem;
-  line-height: 1ex;
-  font-weight: bold;
-
-  z-index: 100;
-}
-
-/* #X-Button:hover */
-.x-button:hover, .x-button:active
-{
-  color: var(--gray1);
-  background-color: transparent;
-}
-
-#Opaque-Screen
-{
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-
-  background-color: #1b1b1b99;
-
-  z-index: 1000;
-}
-
-/* #Play-Button */
-.popup-primary-button, .popup-secondary-button
-{
-  margin-bottom: 1.5rem;
-  padding: 0.3rem 1.2rem 0.3rem 1.2rem;
-  border: 1.5px solid var(--black2);
-  
-  z-index: 10;
-}
-
-/* #Play-Button:hover */
-.popup-primary-button:hover, .popup-primary-button:active
-{
-  background-color: var(--gray2);
-}
-
-.popup-secondary-button
-{
-  padding: calc(0.3rem - 2px) 1.2rem calc(0.3rem - 2px) 1.2rem;
-  color: var(--white);
-  border-color: var(--white);
-  background-color: transparent;
-}
-
-.popup-secondary-button:hover, .popup-secondary-button:active
-{
-  color: var(--gray1);
-  border-color: var(--gray1);
-  background-color: transparent;
-}
-
-/* formatting the pop-up for mobile */
-@media screen and (max-width: 1023px)
-{
-  /* #Tutorial-Pop-Up, #Finish-Pop-Up */
-  .popup
-  {
-    --mobile-popup-width: 70vw;
-    --mobile-popup-height: 70vh;
-    width: var(--mobile-popup-width);
-    height: min( auto, var(--mobile-popup-height) );
-
-    left: calc( (100vw - var(--mobile-popup-width)) / 2 );
-    top: calc( (100vh - var(--mobile-popup-height)) / 2 );
-  }
-
-  /* #X-Button */
-  .x-button
-  {
-    font-size: 2rem;
-  }
-}
-
-/* styling the pop-up copy */
-.popup > h2, 
-.popup > p,
-.popup > ul
-{
-  text-align: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-#Tutorial-Pop-up > h2, 
-#Tutorial-Pop-up > p,
-#Tutorial-Pop-up > ul
-{
-  text-align: left;
-}  
-
-#Tutorial-Pop-Up > h2
-{
-  margin-top: 0.5rem;
-  margin-bottom: 0;
-}
-
-.popup > ul
-{
-  padding-left: 2rem;
-}
-
-.popup > li:last-child
-{
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
 /****************************************************************/
 /* Style and format the main sections in relation to each other */
 /****************************************************************/
@@ -760,6 +462,304 @@ button:hover, button:active
   {
     font-size: min( 6.5vw, calc( var(--mobile-input-button-height) - 1rem) );
   }
+}
+
+/**************************************************************/
+/* Style the menu buttons (reset, check-solution, & tutorial) */
+/**************************************************************/
+
+/* default button styling is for mobile */
+.menu-button
+{
+  --font-size: calc( var(--mobile-square-font-size) + 0.5rem );
+  --button-dimensions: calc( var(--font-size) + 0.5rem );
+
+  font-size: var(--font-size);
+  font-weight: bold;
+  color: var(--white);
+
+  position: fixed;
+  top: calc(10vh - var(--button-dimensions) - 0.7rem);
+
+  width: var(--button-dimensions);
+  height: var(--button-dimensions);
+
+  border: solid var(--white);
+  border-width: calc( var(--mobile-square-border-size) * 2 / 3 );
+  background-color: transparent;
+}
+
+/* mobile positioning for menu buttons */
+
+/* #Tutorial-Button */
+.menu-button:last-child
+{
+  right: 1em;
+}
+
+/* #Finish-Button */
+.menu-button:nth-last-child(2)
+{
+  right: calc(1.5em + var(--button-dimensions));
+}
+
+/* #Restart-Button */
+.menu-button:nth-last-child(3)
+{
+  right: calc(2em + 2 * var(--button-dimensions));
+}
+
+/* desktop styling for the menu buttons */
+@media screen and (min-width: 1024px) 
+{
+  .menu-button
+  {
+    /* based off of #Title font-size is calc(1rem + 2vw) */
+    font-size: calc(1rem + 1.2vw);
+    
+    --button-dimensions: calc(1.5rem + 1.2vw);
+
+    width: var(--button-dimensions);
+    height: var(--button-dimensions);
+
+    /* top is padding-top + #Title font-size */
+    top: calc(3vh + 1rem + 2vw - var(--button-dimensions) * 0.75);
+    /* right mimics #Sudoku margin-right: 5% */
+    right: calc(5% + 1rem);
+
+    border-width: calc( var(--square-border-size) - 1px );
+  }
+  
+  /* #Tutorial-Button */
+  .menu-button:last-child
+  {
+    right: calc(5% + 1rem);
+  }
+
+  /* #Finish-Button */
+  .menu-button:nth-last-child(2)
+  {
+    right: calc(5% + 2rem + var(--button-dimensions));
+  }
+
+  /* #Restart-Button */
+  .menu-button:nth-last-child(3)
+  {
+    right: calc(5% + 3rem + 2 * var(--button-dimensions));
+  }
+}
+
+/* size the button svgs */
+#Finish-Button img
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#Restart-Button img
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 85%;
+  height: 85%;
+}
+
+/* hover effects for the menu buttons */
+.menu-button:hover, .menu-button:active
+{
+  color: var(--gray1);
+  background-color: transparent;
+  border-color: var(--gray1);
+}
+
+.svg-button:hover img, .svg-button:active img
+{
+  filter: invert(72%) sepia(2%) saturate(0%) hue-rotate(327deg) brightness(100%) contrast(0%);
+}
+
+/* style the tool-tips for the menu buttons */
+.tool-tip
+{
+  visibility: hidden;
+
+  position: absolute;
+  top: 115%;
+  right: -2px;
+
+  padding: calc(var(--font-size) / 5);
+  background-color: var(--white);
+  
+  color: var(--black2);
+  font-size: calc(var(--font-size) / 4);
+  white-space: nowrap;
+}
+
+/* make tool tips visible upon hover */
+.menu-button:hover .tool-tip
+{
+  visibility: visible;
+}
+
+/***************************************************************/
+/* Styling the pop-up windows that the menu buttons trigger */
+/***************************************************************/
+
+/* this opacity screen stretches across the entire screen */
+#Opaque-Screen
+{
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #1b1b1b99;
+
+  z-index: 1000;
+}
+
+/* style the popup container for desktop */
+.popup
+{
+  --popup-width: 50vw;
+  --popup-height: 50vh;
+  
+  width: var(--popup-width);
+  height: var(--popup-height);
+
+  /* fix container to horizontal and vertical center */
+  position: fixed;
+  left: calc( (100vw - var(--popup-width)) / 2 );
+  top: calc( (100vh - var(--popup-height)) / 2 );
+
+  overflow: auto;
+  color: var(--white);
+
+  border: 1.5px solid var(--white);
+  background: #1b1b1b;
+
+  z-index: 1000;
+}
+
+/* style the pop-up container for mobile */
+@media screen and (max-width: 1023px)
+{
+  .popup
+  {
+    --mobile-popup-width: 70vw;
+    --mobile-popup-height: 70vh;
+    width: var(--mobile-popup-width);
+    height: min( auto, var(--mobile-popup-height) );
+
+    left: calc( (100vw - var(--mobile-popup-width)) / 2 );
+    top: calc( (100vh - var(--mobile-popup-height)) / 2 );
+  }
+
+  .x-button
+  {
+    font-size: 2rem;
+  }
+}
+
+/* style the x-button used to close the popup windows */
+.x-button
+{
+  position: absolute; /* for IE */
+  
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0.25rem;
+
+  /* width and padding adjustments format the x into the corner of the pop-up! */
+  width: 100%;
+  padding: 0 0 0 calc(100% - 2ex);
+  margin: 0;
+
+  background-color: transparent;
+  border: none;
+  
+  color: var(--white);
+  font-size: 1.5rem;
+  line-height: 1ex;
+  font-weight: bold;
+
+  z-index: 100;
+}
+
+.x-button:hover, .x-button:active
+{
+  color: var(--gray1);
+  background-color: transparent;
+}
+
+/* style the action buttons in the popup windows */
+.popup-primary-button, .popup-secondary-button
+{
+  margin-bottom: 1.5rem;
+  padding: 0.3rem 1.2rem 0.3rem 1.2rem;
+  border: 1.5px solid var(--black2);
+  
+  z-index: 10;
+}
+
+.popup-secondary-button
+{
+  padding: calc(0.3rem - 2px) 1.2rem calc(0.3rem - 2px) 1.2rem;
+  color: var(--white);
+  border-color: var(--white);
+  background-color: transparent;
+}
+
+.popup-primary-button:hover, .popup-primary-button:active
+{
+  background-color: var(--gray2);
+}
+
+.popup-secondary-button:hover, .popup-secondary-button:active
+{
+  color: var(--gray1);
+  border-color: var(--gray1);
+  background-color: transparent;
+}
+
+/* styling the popup copy */
+.popup > h2, 
+.popup > p,
+.popup > ul
+{
+  text-align: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.popup > ul
+{
+  padding-left: 2rem;
+}
+
+.popup > li:last-child
+{
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* the copy for the #Tutorial-Pop-Up needs more custom styling */
+#Tutorial-Pop-up > h2, 
+#Tutorial-Pop-up > p,
+#Tutorial-Pop-up > ul
+{
+  text-align: left;
+}  
+
+#Tutorial-Pop-Up > h2
+{
+  margin-top: 0.5rem;
+  margin-bottom: 0;
 }
 
 /***************************************************************************/
