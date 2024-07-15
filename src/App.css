@@ -745,9 +745,10 @@ button:hover, button:active
 }
 
 /* the copy for the #Tutorial-Pop-Up needs more custom styling */
-#Tutorial-Pop-up > h2, 
-#Tutorial-Pop-up > p,
-#Tutorial-Pop-up > ul
+#Tutorial-Pop-Up > h2, 
+#Tutorial-Pop-Up > p,
+#Tutorial-Pop-Up > ul,
+#Tutorial-Pop-Up > li
 {
   text-align: left;
 }  
